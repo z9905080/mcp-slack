@@ -387,13 +387,13 @@ async function main() {
   const teamId = process.env.SLACK_TEAM_ID;
 
   if (!botToken || !teamId) {
-    console.error(
+    console.log(
       "Please set SLACK_BOT_TOKEN and SLACK_TEAM_ID environment variables",
     );
     process.exit(1);
   }
 
-  console.error("Starting Slack MCP Server...");
+  console.log("Starting Slack MCP Server...");
   const server = new Server(
     {
       name: "Slack MCP Server",
@@ -411,7 +411,7 @@ async function main() {
   server.setRequestHandler(
     CallToolRequestSchema,
     async (request: CallToolRequest) => {
-      console.error("Received CallToolRequest:", request);
+      console.log("Received CallToolRequest:", request);
       try {
         if (!request.params.arguments) {
           throw new Error("No arguments provided");
@@ -549,7 +549,7 @@ async function main() {
             throw new Error(`Unknown tool: ${request.params.name}`);
         }
       } catch (error) {
-        console.error("Error executing tool:", error);
+        console.log("Error executing tool:", error);
         return {
           content: [
             {
@@ -565,7 +565,7 @@ async function main() {
   );
 
   server.setRequestHandler(ListToolsRequestSchema, async () => {
-    console.error("Received ListToolsRequest");
+    console.log("Received ListToolsRequest");
     return {
       tools: [
         listChannelsTool,
@@ -582,13 +582,13 @@ async function main() {
   });
 
   const transport = new StdioServerTransport();
-  console.error("Connecting server to transport...");
+  console.log("Connecting server to transport...");
   await server.connect(transport);
 
-  console.error("Slack MCP Server running on stdio");
+  console.log("Slack MCP Server running on stdio");
 }
 
 main().catch((error) => {
-  console.error("Fatal error in main():", error);
+  console.log("Fatal error in main():", error);
   process.exit(1);
 });
