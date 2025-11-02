@@ -4,6 +4,10 @@
 
 A Model Context Protocol (MCP) server implementation for integrating AI assistants with Slack workspaces.
 
+<a href="https://glama.ai/mcp/servers/@z9905080/mcp-slack">
+  <img width="380" height="200" src="https://glama.ai/mcp/servers/@z9905080/mcp-slack/badge" alt="Server for Slack MCP server" />
+</a>
+
 ## Overview
 
 This package provides an MCP server that enables AI assistants to interact with Slack workspaces. It allows AI models to:
